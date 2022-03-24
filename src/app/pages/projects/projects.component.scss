@@ -1,0 +1,115 @@
+.card {
+  margin: 50px auto;
+  min-width: 386px;
+  max-width: 386px;
+  background-color: rgb(53, 58, 79);
+  border-color: rgb(53, 58, 79);
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0 11px 15px -7px rgba(0, 0, 0, .2), 0 24px 38px 3px rgba(0, 0, 0, .14), 0 9px 46px 8px rgba(0, 0, 0, .12);
+}
+
+.card * {
+  font-family: Roboto, sans-serif;
+}
+
+.card__image {
+  width: 100%;
+  background-position: center center;
+}
+
+.card__body {
+  background: white;
+  padding: 32px 20px;
+}
+
+.card__body--title {
+  color: rgba(0, 0, 0, .87);
+  font-weight: 800;
+  font-size: 24px;
+  line-height: 2rem;
+  letter-spacing: normal;
+}
+
+.card__body--subtitle {
+  color: rgba(0, 0, 0, .87);
+  font-weight: 600;
+  margin-bottom: 12px;
+  font-size: 12px;
+}
+
+.card__body--text {
+  font-size: 12px;
+  font-weight: 500;
+  color: #9e9e9e;
+}
+
+.card__progress {
+  height: 20px;
+  display: flex;
+}
+
+.card__progress--full {
+  background: rgb(247, 211, 43);
+  height: 100%;
+  width: 75%;
+}
+
+.card__progress--remain {
+  background-image: linear-gradient(to right, #517BCF, #7F7CA1);
+  height: 100%;
+  width: 25%;
+  text-align: right;
+}
+
+.card__progress--remain .value {
+  padding-right: 20px;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.25rem;
+  color: white;
+}
+
+.card__actions {
+  padding: 24px;
+  color: white;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  font-size: 16px;
+}
+
+.card__actions button:hover {
+  background: #45495D;
+}
+
+.card__actions--goal {
+  border-left: 1px solid #707070;
+  padding-left: 20px;
+  margin-right: -20px;
+}
+
+.card__actions button {
+  font-size: 34px;
+  font-weight: 800;
+  color: white;
+  background: transparent;
+  outline: none;
+  border: none;
+  border-radius: 4px;
+}
+
+.cards {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-gap: 1rem;
+}
+
+@media (min-width: 600px) {
+  .cards { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (min-width: 900px) {
+  .cards { grid-template-columns: repeat(3, 1fr); }
+}
+
