@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {DataService} from "../../services/data.service";
+import {Project} from "../../models/Project";
 
 @Component({
   selector: 'app-projects',
@@ -8,13 +9,13 @@ import {DataService} from "../../services/data.service";
 })
 export class ProjectsComponent implements OnInit {
 
-  projects: Array<any> = [];
+  projects: Array<Project> = new Array<Project>();
 
   constructor(private dataService: DataService) {
   }
 
   ngOnInit(): void {
-    this.dataService.getData('projects').subscribe((data: Array<any>) => this.projects = data);
+    this.dataService.getData('projects').subscribe((data: Array<Project>) => this.projects = data);
   }
 
   getIs(i: number) {

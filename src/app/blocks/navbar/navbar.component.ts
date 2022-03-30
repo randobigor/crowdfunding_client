@@ -14,7 +14,7 @@ export class NavbarComponent implements OnInit {
   constructor(private dataService:DataService) { }
 
   ngOnInit(): void {
-    this.dataService.getData('categories').subscribe((categories:Array<Category>) => this.categories = categories);
+    this.dataService.getData('categories').subscribe((categories:Array<Category>) => {this.categories = categories});
   }
 
 }

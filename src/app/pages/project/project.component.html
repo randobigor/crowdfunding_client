@@ -1,0 +1,58 @@
+<img [src]="project.picture" alt="" class="project-picture">
+
+<div class="container mt-m5 project-description-container">
+  <div class="card">
+    <div class="card-body">
+      <h2>{{project.name}}</h2>
+    </div>
+  </div>
+
+  <div class="card mt-3">
+    <div class="card-body">
+      <div class="row">
+        <div class="col text-center">
+          <p class="mb-0">Собрано</p>
+          <p class="fw-bold mb-0">{{project.collected | mdlCurrency}}</p>
+        </div>
+        <div class="col text-center">
+          <p class="mb-0">Из всего</p>
+          <p class="fw-bold mb-0">{{project.target | mdlCurrency}}</p>
+        </div>
+        <div class="col text-center">
+          <button type="button" class="btn btn-primary">СДЕЛАТЬ ПОЖЕРТВОВАНИЕ</button>
+        </div>
+      </div>
+      <div class="progress" style="height: 15px">
+        <div
+          class="progress-bar progress-bar-animated progress-bar-striped yellow"
+          role="progressbar"
+          [style.width.%]="calculateCollectedRatio()"
+          [attr.aria-valuenow]="calculateCollectedRatio()"
+          aria-valuemin="0"
+          aria-valuemax="100"
+        ></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card mt-3">
+    <div class="card-body">
+      <h4>О проекте</h4>
+      <p>{{project.description}}</p>
+    </div>
+  </div>
+
+  <div class="card mt-3">
+    <div class="card-body">
+      <mdb-carousel [controls]="true" [indicators]="true" [animation]="'fade'">
+        <mdb-carousel-item *ngFor="let i of getIs(6)">
+          <img
+            src="https://mdbootstrap.com/img/Photos/Slides/img%20(15).webp"
+            class="d-block w-100"
+            alt="Project description image"
+          />
+        </mdb-carousel-item>
+      </mdb-carousel>
+    </div>
+  </div>
+</div>

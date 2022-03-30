@@ -1,39 +1,45 @@
-<mdb-navbar SideClass="navbar navbar-expand-lg navbar-light aqua-gradient" [containerInside]="false">
-  <mdb-navbar-brand>
-    <a class="navbar-brand" href="#">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container">
+    <a class="navbar-brand me-2" routerLink="/">
       <img src="assets/img/logo.png" height="30" class="d-inline-block align-top" alt="">
     </a>
-  </mdb-navbar-brand>
-  <mdb-icon fas icon="angle-left" size="lg" class="text-white mr-auto d-flex d-md-none align-self-center"></mdb-icon>
+    <button
+      class="navbar-toggler"
+      type="button"
+      (click)="buttonsNav.toggle()"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <i class="fas fa-bars"></i>
+    </button>
 
-  <links>
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link waves-light" mdbWavesEffect>Домой<span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link waves-light" mdbWavesEffect>ПОМОЧЬ</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link waves-light" mdbWavesEffect routerLink="/projects">Все проекты</a>
-      </li>
+    <div class="collapse navbar-collapse" id="navbarButtonsExample" mdbCollapse #buttonsNav="mdbCollapse">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link fw-bold dark-blue" routerLink="/projects">Все проекты</a>
+        </li>
 
-      <li class="nav-item dropdown" dropdown>
-        <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
-          Категории<span class="caret"></span></a>
-        <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu" >
-          <a *ngFor="let category of categories" class="dropdown-item waves-light" mdbWavesEffect  href="#">{{category.name}}</a>
-        </div>
-      </li>
+        <li mdbDropdown class="nav-item dropdown dark-blue fw-bold">
+          <a
+            class="nav-link dropdown-toggle"
+            id="navbarDropdownMenuLink"
+            role="button"
+            mdbDropdownToggle
+            aria-expanded="false"
+          >
+            Категории
+          </a>
+          <ul mdbDropdownMenu class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <li *ngFor="let category of categories">
+              <a class="dropdown-item" routerLink="/projects/category/{{category.id}}">{{category.name}}</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
 
-    </ul>
-
-    <form class="form-inline waves-light" mdbWavesEffect>
-      <div class="md-form my-0">
-        <input class="form-control mr-sm-2" type="text" placeholder="Search">
+      <div class="d-flex align-items-center">
+        <a class="btn btn-dark px-3" href="https://github.com/mdbootstrap/mdb-ui-kit" role="button">Igor Bodnar</a>
       </div>
-    </form>
-  </links>
-
-</mdb-navbar>
-
+    </div>
+  </div>
+</nav>
