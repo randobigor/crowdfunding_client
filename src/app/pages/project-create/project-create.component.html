@@ -1,6 +1,14 @@
 <img [src]="project.picture" alt="" class="project-picture">
 
 <div class="container mt-m5 project-description-container">
+  <button
+    class="btn btn-primary btn-lg btn-floating"
+    style="background-color: #ac2bac;"
+    href="#!"
+    role="button"
+    style="height: 46px; width: 46px; margin-bottom: -23px; margin-left: 15px; z-index: 4;"
+    (click)=""
+  ><i class="far fa-image"></i></button>
   <div class="card">
     <div class="card-body">
       <h2>{{project.name}}</h2>
@@ -22,16 +30,6 @@
           <button type="button" class="btn btn-primary">СДЕЛАТЬ ПОЖЕРТВОВАНИЕ</button>
         </div>
       </div>
-      <div class="progress" style="height: 15px">
-        <div
-          class="progress-bar progress-bar-animated progress-bar-striped yellow"
-          role="progressbar"
-          [style.width.%]="calculateCollectedRatio()"
-          [attr.aria-valuenow]="calculateCollectedRatio()"
-          aria-valuemin="0"
-          aria-valuemax="100"
-        ></div>
-      </div>
     </div>
   </div>
 
@@ -42,17 +40,4 @@
     </div>
   </div>
 
-  <div class="card mt-3">
-    <div class="card-body">
-      <mdb-carousel [controls]="true" [indicators]="true" [animation]="'fade'">
-        <mdb-carousel-item *ngFor="let i of getIs(6)">
-          <img
-            [src]="project.picture"
-            class="d-block w-100"
-            alt="Project description image"
-          />
-        </mdb-carousel-item>
-      </mdb-carousel>
-    </div>
-  </div>
 </div>

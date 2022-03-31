@@ -3,9 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import {MDBBootstrapModule} from "angular-bootstrap-md";
 import { NavbarComponent } from './blocks/navbar/navbar.component';
-import {HttpClientModule} from "@angular/common/http";
+import { HttpClientModule } from "@angular/common/http";
 import { ProjectsComponent } from './pages/projects/projects.component';
 import { MdlCurrencyPipe } from './pipes/mdl-currency.pipe';
 import { ProjectComponent } from './pages/project/project.component';
@@ -26,6 +25,7 @@ import { MdbTooltipModule } from 'mdb-angular-ui-kit/tooltip';
 import { MdbValidationModule } from 'mdb-angular-ui-kit/validation';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TextReducerPipe } from './pipes/text-reducer.pipe';
+import { ProjectCreateComponent } from './pages/project-create/project-create.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +34,8 @@ import { TextReducerPipe } from './pipes/text-reducer.pipe';
     ProjectsComponent,
     MdlCurrencyPipe,
     ProjectComponent,
-    TextReducerPipe
+    TextReducerPipe,
+    ProjectCreateComponent
   ],
   imports: [
     BrowserModule,
