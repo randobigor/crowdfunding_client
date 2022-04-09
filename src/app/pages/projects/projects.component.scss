@@ -7,6 +7,7 @@
   border-radius: 5px;
   overflow: hidden;
   box-shadow: 0 11px 15px -7px rgba(0, 0, 0, .2), 0 24px 38px 3px rgba(0, 0, 0, .14), 0 9px 46px 8px rgba(0, 0, 0, .12);
+  cursor: pointer;
 }
 
 .card * {
@@ -16,6 +17,8 @@
 .card__image {
   width: 100%;
   background-position: center center;
+  height: 200px;
+  object-fit: cover;
 }
 
 .card__body {
@@ -52,7 +55,6 @@
 .card__progress--full {
   background: rgb(247, 211, 43);
   height: 100%;
-  width: 75%;
 }
 
 .card__progress--remain {
@@ -60,14 +62,6 @@
   height: 100%;
   width: 25%;
   text-align: right;
-}
-
-.card__progress--remain .value {
-  padding-right: 20px;
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 1.25rem;
-  color: white;
 }
 
 .card__actions {

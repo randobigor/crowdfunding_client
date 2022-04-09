@@ -26,6 +26,7 @@ import { MdbValidationModule } from 'mdb-angular-ui-kit/validation';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TextReducerPipe } from './pipes/text-reducer.pipe';
 import { ProjectCreateComponent } from './pages/project-create/project-create.component';
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -57,6 +58,7 @@ import { ProjectCreateComponent } from './pages/project-create/project-create.co
     MdbTooltipModule,
     MdbValidationModule,
     BrowserAnimationsModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

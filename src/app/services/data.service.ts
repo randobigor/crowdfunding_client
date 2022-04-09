@@ -14,4 +14,8 @@ export class DataService {
   public getData(queryUrl: String): any {
     return this.httpClient.get(this.url + queryUrl);
   }
+
+  public saveData(queryUrl: string, bodyToSave: Object): any {
+    return this.httpClient.post(this.url + queryUrl, bodyToSave);
+  }
 }

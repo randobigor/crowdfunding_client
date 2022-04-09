@@ -18,8 +18,14 @@ export class ProjectsComponent implements OnInit {
     this.dataService.getData('projects').subscribe((data: Array<Project>) => this.projects = data);
   }
 
-  getIs(i: number) {
-    return new Array(i);
+  calculateCollectedRatio(project: Project): number {
+    if (project.collected && project.target && project.collected > project.target) {
+      return 100;
+    }
+    if (project.target && project.collected) {
+      return project.collected * 100 / project.target;
+    }
+    return 0;
   }
 
 }
