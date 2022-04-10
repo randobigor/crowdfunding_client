@@ -27,6 +27,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TextReducerPipe } from './pipes/text-reducer.pipe';
 import { ProjectCreateComponent } from './pages/project-create/project-create.component';
 import {FormsModule} from "@angular/forms";
+import { NoProjectsComponent } from './pages/no-projects/no-projects.component';
+import { ProfileComponent } from './pages/profile/profile.component';
+import { ModalComponent } from './blocks/modal/modal.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +39,10 @@ import {FormsModule} from "@angular/forms";
     MdlCurrencyPipe,
     ProjectComponent,
     TextReducerPipe,
-    ProjectCreateComponent
+    ProjectCreateComponent,
+    NoProjectsComponent,
+    ProfileComponent,
+    ModalComponent
   ],
   imports: [
     BrowserModule,

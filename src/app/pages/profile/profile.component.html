@@ -1,0 +1,41 @@
+<div class="container">
+  <div class="card border border-warning" style="margin-top: 150px">
+    <div class="card-body">
+      <div class="text-center">
+        <img
+          [src]="user.picture"
+          mdbTooltip="Нажми на изображение, чтобы загрузить новое"
+          alt="Profile picture"
+          style="cursor: pointer;"
+          (click)="fileInput.click()"
+        >
+        <input #fileInput type="file" hidden (change)="doFileInput($event)" accept="image/*">
+      </div>
+
+      <div class="form-check form-switch">
+        <input mdbCheckbox class="form-check-input" type="checkbox" id="enableEditingSwitch" (click)="changeEditingStatus()" [checked]="isEditingEnabled" />
+        <label class="form-check-label" for="enableEditingSwitch">Разрешить редактирование</label>
+      </div>
+
+      <mdb-form-control class="mt-4">
+        <input mdbInput type="text" id="first_name_input" class="form-control" [(ngModel)]="user.firstName" [disabled]="!isEditingEnabled" />
+        <label mdbLabel class="form-label" for="first_name_input">Имя</label>
+      </mdb-form-control>
+
+      <mdb-form-control class="mt-3">
+        <input mdbInput type="text" id="last_name_input" class="form-control" [(ngModel)]="user.lastName" [disabled]="!isEditingEnabled" />
+        <label mdbLabel class="form-label" for="last_name_input">Фамилия</label>
+      </mdb-form-control>
+
+      <mdb-form-control class="mt-3">
+        <input mdbInput type="text" id="email_input" class="form-control" [(ngModel)]="user.email" [disabled]="!isEditingEnabled" />
+        <label mdbLabel class="form-label" for="email_input">E-mail</label>
+      </mdb-form-control>
+
+      <div class="text-center mt-3" *ngIf="isEditingEnabled">
+        <button class="btn btn-success" (click)="openModal()">СОХРАНИТЬ</button>
+      </div>
+
+    </div>
+  </div>
+</div>

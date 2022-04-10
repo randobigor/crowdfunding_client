@@ -16,7 +16,8 @@ export class ProjectCreateComponent implements OnInit {
 
   ngOnInit(): void {
     this.dataService.getData("categories").subscribe((data:Array<Category>) => this.categories = data)
-    this.project.user = {id: 1};
+    // @ts-ignore
+    this.project.user = 1;
   }
 
   doFileInput(el: any) {
