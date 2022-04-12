@@ -4,6 +4,7 @@
   <div class="card">
     <div class="card-body">
       <h2>{{project.name}}</h2>
+      <p class="mb-0">Проект создал: {{project.user.firstName + ' ' + project.user.lastName}}. {{project.createdDateTime | date}}</p>
     </div>
   </div>
 
@@ -15,11 +16,15 @@
           <p class="fw-bold mb-2">{{project.collected | mdlCurrency}}</p>
         </div>
         <div class="col text-center">
-          <p class="mb-0">Из всего</p>
+          <p class="mb-0">Цель</p>
           <p class="fw-bold mb-2">{{project.target | mdlCurrency}}</p>
         </div>
         <div class="col text-center">
-          <button type="button" class="btn btn-warning text-black fw-bold">СДЕЛАТЬ ПОЖЕРТВОВАНИЕ</button>
+          <button
+            type="button" class="btn btn-warning text-black fw-bold"
+            [disabled]="project.completed">
+            СДЕЛАТЬ ПОЖЕРТВОВАНИЕ
+          </button>
         </div>
       </div>
       <div class="progress" style="height: 15px">
@@ -42,14 +47,15 @@
     </div>
   </div>
 
-  <div class="card mt-3">
+  <div class="card mt-3" *ngIf="project.descriptionPictures.length > 0">
     <div class="card-body">
-      <mdb-carousel [controls]="true" [indicators]="true" [animation]="'fade'">
-        <mdb-carousel-item *ngFor="let i of getIs(6)">
+      <mdb-carousel [controls]="project.descriptionPictures.length > 1" [indicators]="true" [animation]="'fade'">
+        <mdb-carousel-item *ngFor="let descriptionPicture of project.descriptionPictures">
           <img
-            [src]="project.picture"
+            [src]="descriptionPicture.content"
             class="d-block w-100"
             alt="Project description image"
+            style="object-fit: cover; width: 100%; height: 500px;"
           />
         </mdb-carousel-item>
       </mdb-carousel>

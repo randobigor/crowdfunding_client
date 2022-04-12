@@ -3,6 +3,7 @@ import {DataService} from "../../services/data.service";
 import {User} from "../../models/User";
 import {MdbModalRef, MdbModalService} from "mdb-angular-ui-kit/modal";
 import {ModalComponent} from "../../blocks/modal/modal.component";
+import {HttpClient} from "@angular/common/http";
 
 @Component({
   selector: 'app-profile',
@@ -14,7 +15,7 @@ export class ProfileComponent implements OnInit {
   isEditingEnabled: boolean = false;
   user: User = new User();
 
-  constructor(private dataService: DataService, private modalService: MdbModalService) {
+  constructor(private dataService: DataService, private modalService: MdbModalService, private httpClient: HttpClient) {
   }
 
   ngOnInit(): void {
@@ -42,14 +43,15 @@ export class ProfileComponent implements OnInit {
     reader.readAsDataURL(file);
     reader.onload = () => {
       if (reader.result) {
-        console.log(reader.result.toString())
-        this.modalRef = this.modalService.open(ModalComponent, {
-          data: {
-            title: 'Внимание',
-            message: 'Вы уверены, что хотите изменить фото профиля?'
-          }
+        let updatedUser: User = Object.assign({}, this.user);
+        updatedUser.picture = reader.result.toString();
+
+        this.dataService.updateData("users", updatedUser).subscribe((answer: any) => {
+          /**
+           * Updates current picture only in case of successful update request
+           */
+          this.user.picture = updatedUser.picture;
         })
-        this.modalRef.onClose.subscribe(msg => console.log(msg))
       }
       // this.project.picture = reader.result != null ? reader.result.toString() : null;
     }

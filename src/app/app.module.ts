@@ -30,6 +30,9 @@ import {FormsModule} from "@angular/forms";
 import { NoProjectsComponent } from './pages/no-projects/no-projects.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { ModalComponent } from './blocks/modal/modal.component';
+import { NotificationComponent } from './blocks/notification/notification.component';
+import { CreditCardFormComponent } from './blocks/credit-card-form/credit-card-form.component';
+import { LoginComponent } from './pages/login/login.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +45,10 @@ import { ModalComponent } from './blocks/modal/modal.component';
     ProjectCreateComponent,
     NoProjectsComponent,
     ProfileComponent,
-    ModalComponent
+    ModalComponent,
+    NotificationComponent,
+    CreditCardFormComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

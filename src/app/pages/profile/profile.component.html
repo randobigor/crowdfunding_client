@@ -17,6 +17,8 @@
         <label class="form-check-label" for="enableEditingSwitch">Разрешить редактирование</label>
       </div>
 
+      <button class="btn btn-info mt-2" >Пополнить счет</button>
+
       <mdb-form-control class="mt-4">
         <input mdbInput type="text" id="first_name_input" class="form-control" [(ngModel)]="user.firstName" [disabled]="!isEditingEnabled" />
         <label mdbLabel class="form-label" for="first_name_input">Имя</label>

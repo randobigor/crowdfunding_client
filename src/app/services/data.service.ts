@@ -15,11 +15,15 @@ export class DataService {
     return this.httpClient.get(this.url + queryUrl);
   }
 
-  public getDataByProperty(queryUrl: String, property: String | Number) : any {
+  public getDataByProperty(queryUrl: string, property: string | Number): any {
     return this.httpClient.get(`${this.url + queryUrl}/${property}`);
   }
 
   public saveData(queryUrl: string, bodyToSave: Object): any {
     return this.httpClient.post(this.url + queryUrl, bodyToSave);
+  }
+
+  public updateData(queryUrl: string, bodyToUpdate: Object): any {
+    return this.httpClient.put(this.url + queryUrl, bodyToUpdate);
   }
 }

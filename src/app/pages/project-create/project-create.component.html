@@ -9,9 +9,9 @@
     href="#!"
     role="button"
     style="height: 46px; width: 46px; margin-bottom: -23px; margin-left: 15px; z-index: 4;"
-    (click)="fileInput.click()"
+    (click)="headerPictureInput.click()"
   >
-    <input #fileInput type="file" hidden (change)="doFileInput($event)" accept="image/*">
+    <input #headerPictureInput type="file" hidden (change)="loadHeaderPicture($event)" accept="image/png, image/jpeg">
     <i class="far fa-image"></i>
   </span>
   <div class="card" style="padding-top: 23px">
@@ -43,10 +43,30 @@
   <div class="card mt-3">
     <div class="card-body">
       <h4>О проекте</h4>
-      <textarea rows="6" class="form-control" [(ngModel)]="project.description" (focusout)="log('Focus out')"></textarea>
+      <textarea rows="6" class="form-control" [(ngModel)]="project.description"></textarea>
     </div>
   </div>
 
-  <button class="btn btn-warning" (click)="logProject()">LOG</button>
+  <div class="card mt-3">
+    <div class="card-body">
+      <h4>Добавьте изображения</h4>
+      <input #descriptionPictureInput type="file" hidden (change)="addDescriptionPicture($event)" accept="image/png, image/jpeg">
+      <button class="btn btn-primary mb-2" style="margin-right: 0.5rem" (click)="descriptionPictureInput.click()">Добавить еще</button>
+      <button class="btn btn-danger mb-2" (click)="clearDescriptionPictures()">Сбросить</button>
+
+      <mdb-carousel [controls]="descriptionPictures.length > 1" [indicators]="true" [animation]="'fade'" *ngIf="descriptionPictures.length > 0">
+        <mdb-carousel-item *ngFor="let descriptionPicture of descriptionPictures">
+          <img
+            [src]="descriptionPicture.content"
+            class="d-block w-100"
+            style="width: 100%; height: 500px; object-fit: cover"
+            alt="Project description image"
+          />
+        </mdb-carousel-item>
+      </mdb-carousel>
+    </div>
+  </div>
+
+  <button class="btn btn-warning mt-3" (click)="logProject()">LOG</button>
 
 </div>
