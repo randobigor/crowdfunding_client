@@ -5,6 +5,7 @@ import {ProjectComponent} from "./pages/project/project.component";
 import {ProjectCreateComponent} from "./pages/project-create/project-create.component";
 import {NoProjectsComponent} from "./pages/no-projects/no-projects.component";
 import {ProfileComponent} from "./pages/profile/profile.component";
+import {LoginComponent} from "./pages/login/login.component";
 
 const routes: Routes = [
   {path: 'profile', component: ProfileComponent},
@@ -12,6 +13,7 @@ const routes: Routes = [
   {path: 'projects', component: ProjectsComponent},
   {path: 'project/:id', component: ProjectComponent},
   {path: 'start-company', component: ProjectCreateComponent},
+  {path: 'login', component: LoginComponent},
   {path: 'no-projects', component: NoProjectsComponent}
 ];
 

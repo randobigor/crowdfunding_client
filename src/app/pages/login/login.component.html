@@ -1,1 +1,47 @@
-<p>login works!</p>
+<div class="container mt-5" id="container" [ngClass]="{'right-panel-active': rightPanelActive}">
+  <div class="form-container sign-up-container">
+    <form action="#">
+      <h1 class="h2">Создать аккаут</h1>
+      <div class="social-container">
+        <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+        <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+      </div>
+      <span>or use your email for registration</span>
+      <input type="text" placeholder="Логин" />
+      <input type="email" placeholder="Электронная почта" />
+      <input type="password" placeholder="Пароль" />
+      <input type="password" placeholder="Повторите пароль" />
+      <button class="mt-1">Зарегестрироваться</button>
+    </form>
+  </div>
+  <div class="form-container sign-in-container">
+    <form action="#">
+      <h1>Войти</h1>
+      <div class="social-container">
+        <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+        <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+      </div>
+      <span>или использоват аккаунт</span>
+      <input type="email" placeholder="Логин" />
+      <input type="password" placeholder="Пароль" />
+      <a href="#">Забыли пароль?</a>
+      <button>Войти</button>
+    </form>
+  </div>
+  <div class="overlay-container">
+    <div class="overlay">
+      <div class="overlay-panel overlay-left">
+        <h1>И снова здравствуйте!</h1>
+        <p>Чтобы пользоваться нашим сайтом, пожалуйста, введите данные аккаунта</p>
+        <button class="ghost" id="signIn" (click)="rightPanelActive = false">Войти</button>
+      </div>
+      <div class="overlay-panel overlay-right">
+        <h1>Привет, друг!</h1>
+        <p>Если у тебя еще нет аккаунта, заполни форму и зарегестрируйся</p>
+        <button class="ghost" id="signUp" (click)="rightPanelActive = true">Создать аккаунт</button>
+      </div>
+    </div>
+  </div>
+</div>
