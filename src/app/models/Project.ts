@@ -32,7 +32,7 @@ export class Project {
     this.name = name;
     this.description = description;
     this.category = category || new Category();
-    this.user = user;
+    this.user = user || new User();
     this.collected = collected;
     this.target = target;
     this.picture = picture;

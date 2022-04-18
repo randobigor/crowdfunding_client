@@ -6,15 +6,17 @@ import {ProjectCreateComponent} from "./pages/project-create/project-create.comp
 import {NoProjectsComponent} from "./pages/no-projects/no-projects.component";
 import {ProfileComponent} from "./pages/profile/profile.component";
 import {LoginComponent} from "./pages/login/login.component";
+import {CreditCardFormComponent} from "./blocks/credit-card-form/credit-card-form.component";
 
 const routes: Routes = [
   {path: 'profile', component: ProfileComponent},
+  {path: 'profile/add-funds/:userId', component: CreditCardFormComponent},
   {path: 'projects/category/:categoryId', component: ProjectsComponent},
   {path: 'projects', component: ProjectsComponent},
   {path: 'project/:id', component: ProjectComponent},
   {path: 'start-company', component: ProjectCreateComponent},
   {path: 'login', component: LoginComponent},
-  {path: 'no-projects', component: NoProjectsComponent}
+  {path: 'no-projects', component: NoProjectsComponent},
 ];
 
 @NgModule({

@@ -1,1 +1,40 @@
-<p>credit-card-form works!</p>
+<div class="container text-center">
+  <div class="card mt-5 m-auto" style="width: 40em">
+    <div class="card-body">
+      <div class="row">
+        <div class="col">
+          <input type="text" class="form-control" [(ngModel)]="cardNumber" (input)="someFun()" placeholder="Enter 16 digits of card">
+        </div>
+      </div>
+
+      <div class="row mt-3">
+        <div class="col">
+          <input type="text" class="form-control" [(ngModel)]="cardFirstName" placeholder="First name">
+        </div>
+
+        <div class="col">
+          <input type="text" class="form-control" [(ngModel)]="cardLastName" placeholder="Last name">
+        </div>
+      </div>
+
+      <div class="row mt-3">
+        <div class="col"><input type="text" class="form-control" [(ngModel)]="cardMonth" placeholder="MM"></div>
+        <div class="col"><input type="text" class="form-control" [(ngModel)]="cardYear" placeholder="YY"></div>
+        <div class="col"><input type="text" class="form-control" [(ngModel)]="cardCvc" placeholder="CVC"></div>
+      </div>
+
+      <div class="row mt-3">
+        <div class="col">
+          <input type="text" class="form-control" [(ngModel)]="valueToAdd" placeholder="value">
+        </div>
+      </div>
+
+      <div class="row mt-3">
+        <div class="col text-center">
+          <button class="btn btn-warning" (click)="addFunds()">ADD FUNDS</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

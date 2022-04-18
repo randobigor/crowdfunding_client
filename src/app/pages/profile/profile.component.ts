@@ -4,6 +4,9 @@ import {User} from "../../models/User";
 import {MdbModalRef, MdbModalService} from "mdb-angular-ui-kit/modal";
 import {ModalComponent} from "../../blocks/modal/modal.component";
 import {HttpClient} from "@angular/common/http";
+import {AuthService} from "../../services/auth.service";
+import {TokenStorageService} from "../../services/token-storage.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-profile',
@@ -15,15 +18,18 @@ export class ProfileComponent implements OnInit {
   isEditingEnabled: boolean = false;
   user: User = new User();
 
-  constructor(private dataService: DataService, private modalService: MdbModalService, private httpClient: HttpClient) {
+  constructor(
+    private dataService: DataService,
+    private modalService: MdbModalService,
+    private authS: AuthService,
+    private tokenStorage: TokenStorageService,
+    private router: Router
+  ) {
   }
 
   ngOnInit(): void {
-    //TODO: Write some code code to get current user id (For now, there will be 1)
-    this.dataService.getDataByProperty("users", 1).subscribe((user: User) => {
-      this.user = user;
-      this.checkUserPhotoPresence();
-    });
+    this.user = this.tokenStorage.getUser();
+    this.checkUserPhotoPresence();
   }
 
   changeEditingStatus() {
@@ -32,7 +38,7 @@ export class ProfileComponent implements OnInit {
 
   checkUserPhotoPresence() {
     if (this.user.picture == null) {
-      this.user.picture = "https://avatars.mds.yandex.net/get-kino-vod-films-gallery/28788/47e2fd514411e18b76af786d7417062d/100x64_3";
+      this.user.picture = "https://i.pinimg.com/originals/7c/c7/a6/7cc7a630624d20f7797cb4c8e93c09c1.png";
     }
   }
 
@@ -46,7 +52,7 @@ export class ProfileComponent implements OnInit {
         let updatedUser: User = Object.assign({}, this.user);
         updatedUser.picture = reader.result.toString();
 
-        this.dataService.updateData("users", updatedUser).subscribe((answer: any) => {
+        this.dataService.updateData("users/update-photo", updatedUser).subscribe((answer: any) => {
           /**
            * Updates current picture only in case of successful update request
            */
@@ -66,4 +72,8 @@ export class ProfileComponent implements OnInit {
     });
   }
 
+  logout() {
+    this.tokenStorage.signOut();
+    this.router.navigate(['/login'])
+  }
 }
