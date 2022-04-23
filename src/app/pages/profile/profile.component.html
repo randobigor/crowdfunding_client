@@ -1,49 +1,65 @@
-<div class="container">
-  <div class="card border border-warning" style="margin-top: 150px">
-    <div class="card-body">
-      <div class="text-center">
-        <img
-          [src]="user.picture"
-          mdbTooltip="Нажми на изображение, чтобы загрузить новое"
-          alt="Profile picture"
-          style="cursor: pointer;"
-          (click)="fileInput.click()"
-        >
-        <input #fileInput type="file" hidden (change)="doFileInput($event)" accept="image/*">
-      </div>
+<section style="background-color: #f4f5f7; height: 93.5vh">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col col-lg-6 mb-4 mb-lg-0">
+        <div class="card mb-3" style="border-radius: .5rem;">
+          <div class="row g-0">
+            <div class="col-md-4 gradient-custom text-center text-white"
+                 style="border-top-left-radius: .5rem; border-bottom-left-radius: .5rem;">
+              <img
+                src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava1-bg.webp"
+                alt="Avatar"
+                class="img-fluid my-4"
+                style="width: 100px;"
+              />
+              <h5>{{user.firstName + ' ' + user.lastName}}</h5>
+              <p>Баланс: <b>{{user.balance | mdlCurrency}}</b></p>
+              <i class="far fa-edit mb-5" (click)="changeEditingStatus()" style="cursor: pointer;"><p style="font-family: Source Sans Pro, sans-serif">Редактировать</p></i>
+            </div>
+            <div class="col-md-8">
+              <div class="card-body p-4">
+                <h6>Информация</h6>
+                <hr class="mt-0 mb-4">
+                <div class="row pt-1">
+                  <div class="col-6 mb-3">
+                    <h6>Имя</h6>
+                    <p class="text-muted" *ngIf="!isEditingEnabled">{{user.firstName}}</p>
 
-      <div class="form-check form-switch">
-        <input mdbCheckbox class="form-check-input" type="checkbox" id="enableEditingSwitch" (click)="changeEditingStatus()" [checked]="isEditingEnabled" />
-        <label class="form-check-label" for="enableEditingSwitch">Разрешить редактирование</label>
-      </div>
-
-      <h3>Баланс: {{user.balance}}</h3>
-
-      <button class="btn btn-info mt-2" routerLink="add-funds/{{user.id}}">Пополнить счет</button>
-
-      <mdb-form-control class="mt-4">
-        <input mdbInput type="text" id="first_name_input" class="form-control" [(ngModel)]="user.firstName" [disabled]="!isEditingEnabled" />
-        <label mdbLabel class="form-label" for="first_name_input">Имя</label>
-      </mdb-form-control>
-
-      <mdb-form-control class="mt-3">
-        <input mdbInput type="text" id="last_name_input" class="form-control" [(ngModel)]="user.lastName" [disabled]="!isEditingEnabled" />
-        <label mdbLabel class="form-label" for="last_name_input">Фамилия</label>
-      </mdb-form-control>
-
-      <mdb-form-control class="mt-3">
-        <input mdbInput type="text" id="email_input" class="form-control" [(ngModel)]="user.email" [disabled]="!isEditingEnabled" />
-        <label mdbLabel class="form-label" for="email_input">E-mail</label>
-      </mdb-form-control>
-
-      <div class="text-center mt-3">
-        <button class="btn btn-success" (click)="logout()">Logout</button>
-      </div>
-
-      <div class="text-center mt-3" *ngIf="isEditingEnabled">
-        <button class="btn btn-success" (click)="openModal()">СОХРАНИТЬ</button>
+                    <input type="text" class="form-control" *ngIf="isEditingEnabled" [(ngModel)]="user.firstName">
+                  </div>
+                  <div class="col-6 mb-3">
+                    <h6>Фамилия</h6>
+                    <p class="text-muted" *ngIf="!isEditingEnabled">{{user.lastName}}</p>
+                    <input type="text" class="form-control" *ngIf="isEditingEnabled" [(ngModel)]="user.lastName">
+                  </div>
+                </div>
+                <div class="row pt-1">
+                  <div class="col-6 mb-3" *ngIf="!isEditingEnabled">
+                    <h6>Email</h6>
+                    <p class="text-muted">{{user.email}}</p>
+                  </div>
+                  <div class="col-6 mb-3" *ngIf="!isEditingEnabled">
+                    <h6>Баланс</h6>
+                    <p class="text-muted">{{user.balance | mdlCurrency}}</p>
+                  </div>
+                  <div class="col-12 mb-3" *ngIf="isEditingEnabled">
+                    <h6>Email</h6>
+                    <input type="text" class="form-control" *ngIf="isEditingEnabled" [(ngModel)]="user.email">
+                  </div>
+                </div>
+                <div class="row pt-1">
+                  <div class="col-6 mb-3" *ngIf="!isEditingEnabled">
+                    <button class="btn" style="background-color: #f7d32b; color: #353a4f; font-weight: bold" routerLink="/profile/add-funds">
+                      <i class="fas fa-dollar-sign"></i>
+                      Пополнить счет
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-</div>
-
+</section>

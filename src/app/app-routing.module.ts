@@ -11,7 +11,7 @@ import {MainGuard} from "./guards/main.guard";
 
 const routes: Routes = [
   {path: 'profile', component: ProfileComponent, canActivate: [MainGuard]},
-  {path: 'profile/add-funds/:userId', component: CreditCardFormComponent},
+  {path: 'profile/add-funds', component: CreditCardFormComponent},
   {path: 'projects/category/:categoryId', component: ProjectsComponent},
   {path: 'projects', component: ProjectsComponent},
   {path: 'project/:id', component: ProjectComponent},

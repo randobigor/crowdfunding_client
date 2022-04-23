@@ -38,7 +38,6 @@ export class ProjectComponent implements OnInit {
   }
 
 
-  //TODO: Update user data on success
   donate() {
     let user = this.tokenStorage.getUser();
     let o = {userId: user.id, projectId: this.projectId, value: this.valueToDonate};
