@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {AuthService} from "../../services/auth.service";
 import {TokenStorageService} from "../../services/token-storage.service";
 import {Router} from "@angular/router";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-login',
@@ -25,7 +26,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private authS: AuthService,
     private tokenStorage: TokenStorageService,
-    private router: Router
+    private router: Router,
+    private toastr: ToastrService
   ) {
   }
 
@@ -38,9 +40,11 @@ export class LoginComponent implements OnInit {
       this.tokenStorage.saveToken(data.token);
       this.tokenStorage.saveUser(data);
 
-      this.router.navigate(['/profile'])
+      this.router.navigate(['/'])
     }, error => {
-      console.log(error)
+      if(error.error.message.includes('Bad credentials')) {
+        this.toastr.error('Неверные логин или пароль');
+      }
     })
   }
 
@@ -51,7 +55,11 @@ export class LoginComponent implements OnInit {
 
 
       }, error => {
-      console.log(error.error.message)
+      console.log(error)
+        let errorMessage: string = error.error.message || '';
+        if (errorMessage.includes('Email is already taken')) {
+          this.toastr.error('Этот Email уже занят');
+        }
       }
     )
   }

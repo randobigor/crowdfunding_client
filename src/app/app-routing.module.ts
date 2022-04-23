@@ -7,9 +7,10 @@ import {NoProjectsComponent} from "./pages/no-projects/no-projects.component";
 import {ProfileComponent} from "./pages/profile/profile.component";
 import {LoginComponent} from "./pages/login/login.component";
 import {CreditCardFormComponent} from "./blocks/credit-card-form/credit-card-form.component";
+import {MainGuard} from "./guards/main.guard";
 
 const routes: Routes = [
-  {path: 'profile', component: ProfileComponent},
+  {path: 'profile', component: ProfileComponent, canActivate: [MainGuard]},
   {path: 'profile/add-funds/:userId', component: CreditCardFormComponent},
   {path: 'projects/category/:categoryId', component: ProjectsComponent},
   {path: 'projects', component: ProjectsComponent},

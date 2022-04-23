@@ -34,6 +34,7 @@ import {NotificationComponent} from './blocks/notification/notification.componen
 import {CreditCardFormComponent} from './blocks/credit-card-form/credit-card-form.component';
 import {LoginComponent} from './pages/login/login.component';
 import {authInterceptorProviders} from "./interceptors/auth.interceptor";
+import {ToastrModule} from "ngx-toastr";
 
 @NgModule({
   declarations: [
@@ -71,7 +72,8 @@ import {authInterceptorProviders} from "./interceptors/auth.interceptor";
     MdbTooltipModule,
     MdbValidationModule,
     BrowserAnimationsModule,
-    FormsModule
+    FormsModule,
+    ToastrModule.forRoot()
   ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent]

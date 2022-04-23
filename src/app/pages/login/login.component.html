@@ -1,29 +1,17 @@
 <div class="container mt-5" id="container" [ngClass]="{'right-panel-active': rightPanelActive}">
   <div class="form-container sign-up-container">
     <form action="#">
-      <h1 class="h2">Создать аккаут</h1>
-      <div class="social-container">
-        <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
-        <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
-        <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
-      </div>
-      <span>or use your email for registration</span>
+      <h1 class="h2 mb-3">Создать аккаут</h1>
       <input type="text" [(ngModel)]="registerUser.firstName" [ngModelOptions]="{standalone: true}" placeholder="Имя" />
       <input type="text" [(ngModel)]="registerUser.lastName" [ngModelOptions]="{standalone: true}" placeholder="Фамилия" />
       <input type="email" [(ngModel)]="registerUser.email" [ngModelOptions]="{standalone: true}" placeholder="Электронная почта" />
       <input type="password" [(ngModel)]="registerUser.password" [ngModelOptions]="{standalone: true}" placeholder="Пароль" />
-      <button class="mt-1" (click)="register()">Зарегестрироваться</button>
+      <button class="mt-3" (click)="register()">Зарегестрироваться</button>
     </form>
   </div>
   <div class="form-container sign-in-container">
     <form action="#">
-      <h1>Войти</h1>
-      <div class="social-container">
-        <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
-        <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
-        <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
-      </div>
-      <span>или использоват аккаунт</span>
+      <h1 class="mb-3">Войти</h1>
       <input type="email" [(ngModel)]="loginUser.email" [ngModelOptions]="{standalone: true}" placeholder="Электронная почта" />
       <input type="password" [(ngModel)]="loginUser.password" [ngModelOptions]="{standalone: true}" placeholder="Пароль" />
       <a href="#">Забыли пароль?</a>
