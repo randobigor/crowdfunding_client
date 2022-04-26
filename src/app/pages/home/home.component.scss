@@ -1,0 +1,79 @@
+.carousel img{
+  border-radius: 0.25rem !important;;
+}
+
+//Platform statistics
+@property --number-of-users {
+  syntax: "<integer>";
+  initial-value: 179;
+  inherits: false;
+}
+
+.number-of-users {
+  animation: users-counter 2s alternate ease-in-out;
+  counter-reset: number-of-users var(--number-of-users);
+  font: 800 40px system-ui;
+}
+.number-of-users::after {
+  content: counter(number-of-users);
+}
+
+@keyframes users-counter {
+  from {
+    --number-of-users: 0;
+  }
+  to {
+    --number-of-users: 179;
+  }
+}
+
+
+@property --number-of-projects {
+  syntax: "<integer>";
+  initial-value: 27;
+  inherits: false;
+}
+
+.number-of-projects {
+  animation: projects-counter 1s alternate ease-in-out;
+  counter-reset: number-of-projects var(--number-of-projects);
+  font: 800 40px system-ui;
+}
+.number-of-projects::after {
+  content: counter(number-of-projects);
+}
+
+@keyframes projects-counter {
+  from {
+    --number-of-projects: 0;
+  }
+  to {
+    --number-of-projects: 27;
+  }
+}
+
+
+@property --number-of-donations {
+  syntax: "<integer>";
+  initial-value: 147500;
+  inherits: false;
+}
+
+.number-of-donations {
+  animation: donations-counter 3s alternate ease-in-out;
+  counter-reset: number-of-donations var(--number-of-donations);
+  font: 800 40px system-ui;
+}
+.number-of-donations::after {
+  content: counter(number-of-donations);
+}
+
+@keyframes donations-counter {
+  from {
+    --number-of-donations: 0;
+  }
+  to {
+    --number-of-donations: 147500;
+  }
+}
+

@@ -8,6 +8,7 @@ import {ProfileComponent} from "./pages/profile/profile.component";
 import {LoginComponent} from "./pages/login/login.component";
 import {CreditCardFormComponent} from "./blocks/credit-card-form/credit-card-form.component";
 import {MainGuard} from "./guards/main.guard";
+import {HomeComponent} from "./pages/home/home.component";
 
 const routes: Routes = [
   {path: 'profile', component: ProfileComponent, canActivate: [MainGuard]},
@@ -18,6 +19,7 @@ const routes: Routes = [
   {path: 'start-company', component: ProjectCreateComponent},
   {path: 'login', component: LoginComponent},
   {path: 'no-projects', component: NoProjectsComponent},
+  {path: '', component: HomeComponent}
 ];
 
 @NgModule({

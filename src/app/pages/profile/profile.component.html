@@ -1,20 +1,25 @@
 <section style="background-color: #f4f5f7; height: 93.5vh">
   <div class="container py-5 h-100">
-    <div class="row d-flex justify-content-center align-items-center h-100">
+    <div class="row d-flex justify-content-center align-items-center h-80">
       <div class="col col-lg-6 mb-4 mb-lg-0">
         <div class="card mb-3" style="border-radius: .5rem;">
           <div class="row g-0">
             <div class="col-md-4 gradient-custom text-center text-white"
                  style="border-top-left-radius: .5rem; border-bottom-left-radius: .5rem;">
               <img
-                src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava1-bg.webp"
+                [src]="user.picture"
                 alt="Avatar"
                 class="img-fluid my-4"
-                style="width: 100px;"
+                style="width: 100px; height: 100px; object-fit: cover; border-radius: 50%; cursor: pointer"
+                (click)="fileInput.click()"
+                mdbTooltip="Нажми на изображение, чтобы загрузить новое"
               />
+              <input #fileInput type="file" hidden (change)="doFileInput($event)" accept="image/*">
               <h5>{{user.firstName + ' ' + user.lastName}}</h5>
               <p>Баланс: <b>{{user.balance | mdlCurrency}}</b></p>
-              <i class="far fa-edit mb-5" (click)="changeEditingStatus()" style="cursor: pointer;"><p style="font-family: Source Sans Pro, sans-serif">Редактировать</p></i>
+              <i class="far fa-edit mb-5" (click)="changeEditingStatus()" style="cursor: pointer;">
+                <p style="font-family: Source Sans Pro, sans-serif">Редактировать</p>
+              </i>
             </div>
             <div class="col-md-8">
               <div class="card-body p-4">
@@ -48,10 +53,20 @@
                   </div>
                 </div>
                 <div class="row pt-1">
-                  <div class="col-6 mb-3" *ngIf="!isEditingEnabled">
-                    <button class="btn" style="background-color: #f7d32b; color: #353a4f; font-weight: bold" routerLink="/profile/add-funds">
+                  <div class="col-8 mb-3" *ngIf="!isEditingEnabled">
+                    <button class="btn" style="background-color: #f7d32b; color: #353a4f; font-weight: bold"
+                            routerLink="/profile/add-funds">
                       <i class="fas fa-dollar-sign"></i>
                       Пополнить счет
+                    </button>
+                  </div>
+                  <div class="col-3 mb-3">
+                    <button class="btn" (click)="logout()">Выход</button>
+                  </div>
+                  <div class="col-6 mb-3" *ngIf="isEditingEnabled">
+                    <button class="btn btn-success">
+                      <i class="fas fa-save"></i>
+                      Сохранить
                     </button>
                   </div>
                 </div>

@@ -57,9 +57,9 @@ export class ProfileComponent implements OnInit {
            * Updates current picture only in case of successful update request
            */
           this.user.picture = updatedUser.picture;
+          this.tokenStorage.saveUser(this.user);
         })
       }
-      // this.project.picture = reader.result != null ? reader.result.toString() : null;
     }
   }
 

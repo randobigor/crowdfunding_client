@@ -35,6 +35,8 @@ import {CreditCardFormComponent} from './blocks/credit-card-form/credit-card-for
 import {LoginComponent} from './pages/login/login.component';
 import {authInterceptorProviders} from "./interceptors/auth.interceptor";
 import {ToastrModule} from "ngx-toastr";
+import { HomeComponent } from './pages/home/home.component';
+import { RuProjectTmPipe } from './pipes/ru-project-tm.pipe';
 
 @NgModule({
   declarations: [
@@ -50,7 +52,9 @@ import {ToastrModule} from "ngx-toastr";
     ModalComponent,
     NotificationComponent,
     CreditCardFormComponent,
-    LoginComponent
+    LoginComponent,
+    HomeComponent,
+    RuProjectTmPipe
   ],
   imports: [
     BrowserModule,

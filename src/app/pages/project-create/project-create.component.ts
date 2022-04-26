@@ -4,6 +4,8 @@ import {Category} from "../../models/Category";
 import {DataService} from "../../services/data.service";
 import {PictureToBase64ConverterService} from "../../services/picture-to-base64-converter.service";
 import {Picture} from "../../models/Picture";
+import {ToastrService} from "ngx-toastr";
+import {TokenStorageService} from "../../services/token-storage.service";
 
 @Component({
   selector: 'app-project-create',
@@ -15,13 +17,17 @@ export class ProjectCreateComponent implements OnInit {
   categories: Array<Category> = new Array<Category>();
   descriptionPictures: Array<Picture> = new Array<Picture>();
 
-  constructor(private dataService: DataService, private converter: PictureToBase64ConverterService) {
-  }
+  constructor(
+    private dataService: DataService,
+    private converter: PictureToBase64ConverterService,
+    private token: TokenStorageService,
+    private toastr: ToastrService
+  ) {}
 
   ngOnInit(): void {
-    this.dataService.getData("categories").subscribe((data: Array<Category>) => this.categories = data)
-    //@ts-ignore
-    this.project.user = 1;
+    this.dataService.getData("categories").subscribe((data: Array<Category>) => this.categories = data);
+    this.project.user = this.token.getUser().id;
+    this.project.picture = 'assets/img/yellow-clouds.webp';
   }
 
   async loadHeaderPicture(el: any) {
@@ -37,9 +43,10 @@ export class ProjectCreateComponent implements OnInit {
     this.descriptionPictures = [];
   }
 
-  logProject() {
+  createProject() {
     this.project.descriptionPictures = this.descriptionPictures;
-    // console.log(this.project)
-    this.dataService.saveData("projects", this.project).subscribe((answer: any) => console.log(answer))
+    this.dataService.saveData("projects", this.project).subscribe((answer: any) => {
+      this.toastr.success("Проект успешно создан");
+    })
   }
 }

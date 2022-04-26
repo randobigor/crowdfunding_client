@@ -1,40 +1,149 @@
-<div class="container text-center">
-  <div class="card mt-5 m-auto" style="width: 40em">
-    <div class="card-body">
-      <div class="row">
-        <div class="col">
-          <input type="text" class="form-control" [(ngModel)]="cardNumber" (input)="someFun()" placeholder="Enter 16 digits of card">
+<div class="wrapper" id="app">
+  <div class="card-form">
+    <div class="card-list">
+      <div class="card-item" [ngClass]="{ '-active' : isCardFlipped }">
+        <div class="card-item__side -front">
+          <!--          <div class="card-item__focus" [ngClass]="{'-active' : focusElementStyle }" v-bind:style="focusElementStyle" ref="focusElement"></div>-->
+          <div class="card-item__focus" [ngClass]="{'-active' : focusElementStyle }"></div>
+          <div class="card-item__cover">
+            <img
+              [src]="'assets/img/card_images/' + currentCardBackground + '.jpeg'"
+              class="card-item__bg">
+          </div>
+
+          <div class="card-item__wrapper">
+            <div class="card-item__top">
+              <img
+                src="https://raw.githubusercontent.com/muhammederdem/credit-card-form/master/src/assets/images/chip.png"
+                class="card-item__chip">
+              <div class="card-item__type">
+                <div>
+                  <img
+                    [src]="'assets/img/card_images/' + getCardType() + '.png'"
+                    alt="" class="card-item__typeImg">
+                </div>
+              </div>
+            </div>
+            <label for="cardNumber" class="card-item__number">
+              <div>
+                <span>
+                  <div>
+                    <div class="card-item__numberItem" *ngIf="cardNumber">
+                      {{cardNumber}}
+                    </div>
+                    <div class="card-item__numberItem" *ngIf="!cardNumber">
+                      #### #### #### ####
+                    </div>
+                  </div>
+                </span>
+              </div>
+            </label>
+            <div class="card-item__content">
+              <label for="cardName" class="card-item__info">
+                <div class="card-item__holder">Card Holder</div>
+                <div>
+                  <div class="card-item__name">
+                    <div>
+                      <span class="card-item__nameItem" *ngIf="cardName">{{cardName}}</span>
+                      <span class="card-item__nameItem" *ngIf="!cardName">ИМЯ ФАМИЛИЯ</span>
+                    </div>
+                  </div>
+                </div>
+              </label>
+              <div class="card-item__date">
+                <label for="cardMonth" class="card-item__dateTitle">Expires</label>
+                <label for="cardMonth" class="card-item__dateItem">
+                  <div>
+                    <span *ngIf="cardMonth">{{cardMonth}}</span>
+                    <span *ngIf="!cardMonth">ММ</span>
+                  </div>
+                </label>
+                /
+                <label for="cardYear" class="card-item__dateItem">
+                  <div>
+                    <span *ngIf="cardYear">{{cardYear.slice(2, 4)}}</span>
+                    <span *ngIf="!cardYear">ГГ</span>
+                  </div>
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-item__side -back">
+          <div class="card-item__cover">
+            <img
+              [src]="'assets/img/card_images/' + currentCardBackground + '.jpeg'"
+              class="card-item__bg">
+          </div>
+          <div class="card-item__band"></div>
+          <div class="card-item__cvv">
+            <div class="card-item__cvvTitle">CVV</div>
+            <div class="card-item__cvvBand">
+              <span *ngIf="cardCvv">{{cardCvv}}</span>
+              <span *ngIf="!cardCvv">***</span>
+            </div>
+            <div class="card-item__type">
+              <img
+                [src]="'assets/img/card_images/' + getCardType() + '.png'"
+                class="card-item__typeImg">
+            </div>
+          </div>
         </div>
       </div>
-
-      <div class="row mt-3">
-        <div class="col">
-          <input type="text" class="form-control" [(ngModel)]="cardFirstName" placeholder="First name">
+    </div>
+    <div class="card-form__inner">
+      <div class="card-input">
+        <label for="cardNumber" class="card-input__label">Номер карты</label>
+        <input type="text" id="cardNumber" class="card-input__input" (focus)="focusInput($event)" (blur)="blurInput()"
+               [(ngModel)]="cardNumber" maxlength="19" placeholder="#### #### #### ####"
+               data-ref="cardNumber" autocomplete="off" (input)="formatCardNumber()">
+      </div>
+      <div class="card-input">
+        <label for="cardName" class="card-input__label">Данные владельца</label>
+        <input type="text" id="cardName" class="card-input__input text-uppercase" (focus)="focusInput($event)"
+               (blur)="blurInput()"
+               data-ref="cardName" autocomplete="off" [(ngModel)]="cardName" placeholder="ИМЯ ФАМИЛИЯ">
+      </div>
+      <div class="card-form__row">
+        <div class="card-form__col">
+          <div class="card-form__group">
+            <label for="cardMonth" class="card-input__label">Дата валидности</label>
+            <select class="card-input__input -select" id="cardMonth" (focus)="focusInput($event)"
+                    (blur)="blurInput()" data-ref="cardDate">
+              <option value="" disabled selected>Месяц</option>
+              <option *ngFor="let month of getMonths()">
+                {{month.toString().padStart(2, '0')}}
+              </option>
+            </select>
+            <select class="card-input__input -select" id="cardYear" (focus)="focusInput($event)"
+                    (blur)="blurInput()" data-ref="cardDate">
+              <option value="" disabled selected>Год</option>
+              <option *ngFor="let year of generateYears()">
+                {{year}}
+              </option>
+            </select>
+          </div>
         </div>
-
-        <div class="col">
-          <input type="text" class="form-control" [(ngModel)]="cardLastName" placeholder="Last name">
+        <div class="card-form__col -cvv">
+          <div class="card-input">
+            <label for="cardCvv" class="card-input__label">CVV</label>
+            <input type="text" class="card-input__input" style="width: 100px;" id="cardCvv" maxlength="3"
+                   (focus)="flipCard(true)" (click)="cardCvv = ''"
+                   (blur)="flipCard(false)" autocomplete="off" [(ngModel)]="cardCvv">
+          </div>
+        </div>
+        <div class="card-form__col">
+          <div class="card-form__group">
+            <label for="cardValue" class="card-input__label">Сумма</label>
+            <input type="text" class="card-input__input" id="cardValue" style="width: 100px" maxlength="5"
+                   (focus)="flipCard(true)"
+                   (blur)="flipCard(false)" autocomplete="off" [(ngModel)]="valueToAdd">
+          </div>
         </div>
       </div>
-
-      <div class="row mt-3">
-        <div class="col"><input type="text" class="form-control" [(ngModel)]="cardMonth" placeholder="MM"></div>
-        <div class="col"><input type="text" class="form-control" [(ngModel)]="cardYear" placeholder="YY"></div>
-        <div class="col"><input type="text" class="form-control" [(ngModel)]="cardCvc" placeholder="CVC"></div>
-      </div>
-
-      <div class="row mt-3">
-        <div class="col">
-          <input type="text" class="form-control" [(ngModel)]="valueToAdd" placeholder="value">
-        </div>
-      </div>
-
-      <div class="row mt-3">
-        <div class="col text-center">
-          <button class="btn btn-warning" (click)="addFunds()">ADD FUNDS</button>
-        </div>
-      </div>
-
+      <button class="card-form__button" (click)="addFunds()">
+        ГОТОВО
+      </button>
     </div>
   </div>
 </div>

@@ -10,6 +10,7 @@ const EXPIRES_IN_MS = 86400000;
 })
 export class TokenStorageService {
   public isAuthenticated = new BehaviorSubject(!!localStorage.getItem(TOKEN_KEY));
+  public currentUser = new BehaviorSubject(this.getUser());
 
   constructor() { }
 

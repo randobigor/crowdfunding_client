@@ -1,14 +1,13 @@
-<div *ngIf="project.picture">
-  <img [src]="project.picture" alt="" class="project-picture">
-</div>
+<img [src]="project.picture" alt="" class="project-picture">
 
-<div class="container mt-2 project-description-container">
+<div class="container project-description-container" style="margin-top: -60px">
   <span
     class="btn btn-primary btn-lg btn-floating"
     style="background-color: #ac2bac;"
     href="#!"
     role="button"
     style="height: 46px; width: 46px; margin-bottom: -23px; margin-left: 15px; z-index: 4;"
+    mdbTooltip="Нажми на изображение, чтобы загрузить новое"
     (click)="headerPictureInput.click()"
   >
     <input #headerPictureInput type="file" hidden (change)="loadHeaderPicture($event)" accept="image/png, image/jpeg">
@@ -50,11 +49,15 @@
   <div class="card mt-3">
     <div class="card-body">
       <h4>Добавьте изображения</h4>
-      <input #descriptionPictureInput type="file" hidden (change)="addDescriptionPicture($event)" accept="image/png, image/jpeg">
-      <button class="btn btn-primary mb-2" style="margin-right: 0.5rem" (click)="descriptionPictureInput.click()">Добавить еще</button>
+      <input #descriptionPictureInput type="file" hidden (change)="addDescriptionPicture($event)"
+             accept="image/png, image/jpeg">
+      <button class="btn btn-primary mb-2" style="margin-right: 0.5rem" (click)="descriptionPictureInput.click()">
+        Добавить еще
+      </button>
       <button class="btn btn-danger mb-2" (click)="clearDescriptionPictures()">Сбросить</button>
 
-      <mdb-carousel [controls]="descriptionPictures.length > 1" [indicators]="true" [animation]="'fade'" *ngIf="descriptionPictures.length > 0">
+      <mdb-carousel [controls]="descriptionPictures.length > 1" [indicators]="true" [animation]="'fade'"
+                    *ngIf="descriptionPictures.length > 0">
         <mdb-carousel-item *ngFor="let descriptionPicture of descriptionPictures">
           <img
             [src]="descriptionPicture.content"
@@ -67,6 +70,8 @@
     </div>
   </div>
 
-  <button class="btn btn-warning mt-3" (click)="logProject()">LOG</button>
+  <div class="d-flex justify-content-end">
+    <button class="btn btn-success mt-3" (click)="createProject()">Опубликовать <i class="fas fa-angle-double-right"></i></button>
+  </div>
 
 </div>

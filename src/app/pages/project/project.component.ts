@@ -43,10 +43,13 @@ export class ProjectComponent implements OnInit {
     let o = {userId: user.id, projectId: this.projectId, value: this.valueToDonate};
     this.dataService.saveData("projects/donate", o).subscribe((resp: any) => {
       user.balance = parseFloat(user.balance) - parseFloat(this.valueToDonate);
+      this.project.collected = this.project.collected + parseFloat(this.valueToDonate);
       this.tokenStorage.saveUser(user);
       this.toastr.success('Пожертвование сделано успешно!')
     }, (error: any) => {
-      console.log(error.error.message)
+      if(error.error.message.includes('enough')) {
+        this.toastr.warning("Недостаточно денег на счету");
+      }
     })
   }
 }

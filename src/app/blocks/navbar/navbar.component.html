@@ -19,7 +19,7 @@
           <a class="nav-link fw-bold dark-blue" routerLink="/projects">Все проекты</a>
         </li>
 
-        <li mdbDropdown class="nav-item dropdown dark-blue fw-bold">
+        <li mdbDropdown class="nav-item dropdown dark-blue fw-bold active">
           <a
             class="nav-link dropdown-toggle"
             id="navbarDropdownMenuLink"
@@ -38,8 +38,8 @@
       </ul>
 
       <div class="d-flex align-items-center">
-        <a class="btn dark-blue-bg text-white px-3" routerLink="/start-company" role="button" *ngIf="isAuthenticated">Launch a new company</a>
-        <a class="btn dark-blue-bg text-white px-3 mx-2" routerLink="/profile" role="button" *ngIf="isAuthenticated">Igor Bodnar</a>
+        <a class="btn dark-blue-bg text-white px-3" routerLink="/start-company" role="button" *ngIf="isAuthenticated">Создать проект</a>
+        <a class="btn dark-blue-bg text-white px-3 mx-2" routerLink="/profile" role="button" *ngIf="isAuthenticated">{{user.firstName + ' ' + user.lastName}}</a>
         <a class="btn dark-blue-bg text-white px-3" routerLink="/login" role="button" *ngIf="!isAuthenticated">Вход</a>
       </div>
     </div>
