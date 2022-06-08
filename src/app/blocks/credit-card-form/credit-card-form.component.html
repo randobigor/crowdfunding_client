@@ -40,7 +40,7 @@
             </label>
             <div class="card-item__content">
               <label for="cardName" class="card-item__info">
-                <div class="card-item__holder">Card Holder</div>
+                <div class="card-item__holder">Данные клиента</div>
                 <div>
                   <div class="card-item__name">
                     <div>
@@ -51,7 +51,7 @@
                 </div>
               </label>
               <div class="card-item__date">
-                <label for="cardMonth" class="card-item__dateTitle">Expires</label>
+                <label for="cardMonth" class="card-item__dateTitle">Истекает</label>
                 <label for="cardMonth" class="card-item__dateItem">
                   <div>
                     <span *ngIf="cardMonth">{{cardMonth}}</span>
@@ -136,7 +136,7 @@
           <div class="card-form__group">
             <label for="cardValue" class="card-input__label">Сумма</label>
             <input type="text" class="card-input__input" id="cardValue" style="width: 100px" maxlength="5"
-                   (focus)="flipCard(true)"
+                   (focus)="flipCard(true)" appAllowNumbersOnly
                    (blur)="flipCard(false)" autocomplete="off" [(ngModel)]="valueToAdd">
           </div>
         </div>

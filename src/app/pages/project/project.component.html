@@ -21,7 +21,7 @@
         </div>
         <div class="col text-center">
           <button
-            type="button" class="btn btn-warning text-black fw-bold"
+            type="button" class="btn btn-warning text-black fw-bold" (click)="donate()"
             [disabled]="project.completed || !isAuthenticated">
             СДЕЛАТЬ ПОЖЕРТВОВАНИЕ
           </button>
@@ -60,7 +60,3 @@
     </mdb-carousel>
   </div>
 </div>
-
-<input type="text" class="form-control" [(ngModel)]="valueToDonate">
-<button class="btn btn-info" (click)="donate()">DONATE</button>
-

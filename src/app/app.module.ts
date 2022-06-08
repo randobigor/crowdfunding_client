@@ -37,6 +37,7 @@ import {authInterceptorProviders} from "./interceptors/auth.interceptor";
 import {ToastrModule} from "ngx-toastr";
 import { HomeComponent } from './pages/home/home.component';
 import { RuProjectTmPipe } from './pipes/ru-project-tm.pipe';
+import { AllowNumbersOnlyDirective } from './directives/allow-numbers-only.directive';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,8 @@ import { RuProjectTmPipe } from './pipes/ru-project-tm.pipe';
     CreditCardFormComponent,
     LoginComponent,
     HomeComponent,
-    RuProjectTmPipe
+    RuProjectTmPipe,
+    AllowNumbersOnlyDirective
   ],
   imports: [
     BrowserModule,

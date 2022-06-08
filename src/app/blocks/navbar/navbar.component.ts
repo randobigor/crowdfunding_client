@@ -11,7 +11,7 @@ import {User} from "../../models/User";
 })
 export class NavbarComponent implements OnInit {
   public isAuthenticated: boolean = false;
-  public user: User = new User();
+  public user: User;
   categories: Array<Category> = new Array<Category>();
 
   constructor(private dataService:DataService, private token: TokenStorageService) { }

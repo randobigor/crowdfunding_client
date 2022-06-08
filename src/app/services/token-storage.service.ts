@@ -16,6 +16,7 @@ export class TokenStorageService {
 
   signOut(): void {
     window.localStorage.clear();
+    this.currentUser.next(null);
     this.isAuthenticated.next(false);
   }
 
@@ -40,6 +41,7 @@ export class TokenStorageService {
   public saveUser(user: any): void {
     window.localStorage.removeItem(USER_KEY);
     window.localStorage.setItem(USER_KEY, JSON.stringify(user));
+    this.currentUser.next(user);
     this.isAuthenticated.next(true);
   }
 

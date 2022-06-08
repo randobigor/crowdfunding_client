@@ -9,5 +9,4 @@ export class TextReducerPipe implements PipeTransform {
   transform(value: unknown, ...args: unknown[]): unknown {
     return String(value).substring(0, 160) + '...';
   }
-
 }

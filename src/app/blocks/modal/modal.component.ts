@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, EventEmitter, Output} from '@angular/core';
 import {MdbModalRef} from "mdb-angular-ui-kit/modal";
 
 @Component({
@@ -7,10 +7,12 @@ import {MdbModalRef} from "mdb-angular-ui-kit/modal";
   styleUrls: ['./modal.component.scss']
 })
 export class ModalComponent {
-  title: string | null = null;
-  message: string | null = null;
+  donationValue: string | null = null;
 
   constructor(public modalRef: MdbModalRef<ModalComponent>) {
   }
 
+  sendMessage() {
+    this.modalRef.close(this.donationValue);
+  }
 }

@@ -4,6 +4,8 @@ import {DataService} from "../../services/data.service";
 import {ActivatedRoute} from "@angular/router";
 import {TokenStorageService} from "../../services/token-storage.service";
 import {ToastrService} from "ngx-toastr";
+import {MdbModalRef, MdbModalService} from "mdb-angular-ui-kit/modal";
+import {ModalComponent} from "../../blocks/modal/modal.component";
 
 @Component({
   selector: 'app-project',
@@ -13,14 +15,15 @@ import {ToastrService} from "ngx-toastr";
 export class ProjectComponent implements OnInit {
   private readonly projectId: number;
   project: Project = new Project();
-  valueToDonate: string = null;
   isAuthenticated: boolean = false;
+  modalRef: MdbModalRef<ModalComponent> | null = null;
 
   constructor(
     private dataService: DataService,
     private activatedRoute: ActivatedRoute,
     private tokenStorage: TokenStorageService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private modalService: MdbModalService
   ) {
     this.projectId = activatedRoute.snapshot.params['id'];//check if this is this param (id)
   }
@@ -39,17 +42,20 @@ export class ProjectComponent implements OnInit {
 
 
   donate() {
-    let user = this.tokenStorage.getUser();
-    let o = {userId: user.id, projectId: this.projectId, value: this.valueToDonate};
-    this.dataService.saveData("projects/donate", o).subscribe((resp: any) => {
-      user.balance = parseFloat(user.balance) - parseFloat(this.valueToDonate);
-      this.project.collected = this.project.collected + parseFloat(this.valueToDonate);
-      this.tokenStorage.saveUser(user);
-      this.toastr.success('Пожертвование сделано успешно!')
-    }, (error: any) => {
-      if(error.error.message.includes('enough')) {
-        this.toastr.warning("Недостаточно денег на счету");
-      }
-    })
+    this.modalRef = this.modalService.open(ModalComponent);
+    this.modalRef.onClose.subscribe((donationValue: any) => {
+      let user = this.tokenStorage.getUser();
+      let o = {userId: user.id, projectId: this.projectId, value: donationValue};
+      this.dataService.saveData("projects/donate", o).subscribe((resp: any) => {
+        user.balance = parseFloat(user.balance) - parseFloat(donationValue);
+        this.project.collected = this.project.collected + parseFloat(donationValue);
+        this.tokenStorage.saveUser(user);
+        this.toastr.success('Пожертвование сделано успешно!')
+      }, (error: any) => {
+        if(error.error.message.includes('enough')) {
+          this.toastr.warning("Недостаточно денег на счету");
+        }
+      })
+    });
   }
 }

@@ -1,5 +1,4 @@
 <div class="modal-header">
-  <h5 class="modal-title" id="exampleModalLabel">{{ title }}</h5>
   <button
     type="button"
     class="btn-close"
@@ -7,10 +6,15 @@
     (click)="modalRef.close()"
   ></button>
 </div>
-<div class="modal-body">{{ message }}</div>
+<div class="modal-body">
+  <mdb-form-control>
+    <input mdbInput type="text" id="donationValue" class="form-control" maxlength="5" appAllowNumbersOnly [(ngModel)]="donationValue"/>
+    <label mdbLabel class="form-label" for="donationValue">Сумма пожертвования</label>
+  </mdb-form-control>
+</div>
 <div class="modal-footer">
-  <button type="button" class="btn btn-secondary" (click)="modalRef.close()">
+  <button type="button" class="btn btn-danger" (click)="modalRef.close()">
     Закрыть
   </button>
-  <button type="button" class="btn btn-primary">ОК</button>
+  <button type="button" class="btn btn-primary" (click)="sendMessage()">ОК</button>
 </div>
