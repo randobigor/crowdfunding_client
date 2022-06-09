@@ -14,7 +14,7 @@ export class User {
     this.lastName = lastName || null;
     this.email = email || null;
     this.password = password || null;
-    this.balance = balance || null;
+    this.balance = balance || 0;
     this.picture = picture || null;
   }
 }

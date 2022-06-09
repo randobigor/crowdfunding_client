@@ -109,15 +109,15 @@
           <div class="card-form__group">
             <label for="cardMonth" class="card-input__label">Дата валидности</label>
             <select class="card-input__input -select" id="cardMonth" (focus)="focusInput($event)"
-                    (blur)="blurInput()" data-ref="cardDate">
-              <option value="" disabled selected>Месяц</option>
+                    (blur)="blurInput()" data-ref="cardDate" [(ngModel)]="cardMonth">
+              <option value="null" disabled selected>Месяц</option>
               <option *ngFor="let month of getMonths()">
                 {{month.toString().padStart(2, '0')}}
               </option>
             </select>
             <select class="card-input__input -select" id="cardYear" (focus)="focusInput($event)"
-                    (blur)="blurInput()" data-ref="cardDate">
-              <option value="" disabled selected>Год</option>
+                    (blur)="blurInput()" data-ref="cardDate" [(ngModel)]="cardYear">
+              <option value="null" disabled selected>Год</option>
               <option *ngFor="let year of generateYears()">
                 {{year}}
               </option>

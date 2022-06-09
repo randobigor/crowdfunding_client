@@ -7,12 +7,15 @@ import {MdbModalRef} from "mdb-angular-ui-kit/modal";
   styleUrls: ['./modal.component.scss']
 })
 export class ModalComponent {
-  donationValue: string | null = null;
+  payment: any = {
+    donationValue: null,
+    isAnonymous: false
+  }
 
   constructor(public modalRef: MdbModalRef<ModalComponent>) {
   }
 
   sendMessage() {
-    this.modalRef.close(this.donationValue);
+    this.modalRef.close(this.payment);
   }
 }

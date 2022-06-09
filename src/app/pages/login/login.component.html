@@ -6,7 +6,7 @@
       <input type="text" [(ngModel)]="registerUser.lastName" [ngModelOptions]="{standalone: true}" placeholder="Фамилия" />
       <input type="email" [(ngModel)]="registerUser.email" [ngModelOptions]="{standalone: true}" placeholder="Электронная почта" />
       <input type="password" [(ngModel)]="registerUser.password" [ngModelOptions]="{standalone: true}" placeholder="Пароль" />
-      <input type="password" [(ngModel)]="registerUser.password" [ngModelOptions]="{standalone: true}" placeholder="Повторите пароль" />
+      <input type="password" placeholder="Повторите пароль" />
       <button class="mt-3" (click)="register()">Зарегестрироваться</button>
     </form>
   </div>

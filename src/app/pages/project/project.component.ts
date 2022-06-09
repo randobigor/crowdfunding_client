@@ -43,19 +43,21 @@ export class ProjectComponent implements OnInit {
 
   donate() {
     this.modalRef = this.modalService.open(ModalComponent);
-    this.modalRef.onClose.subscribe((donationValue: any) => {
-      let user = this.tokenStorage.getUser();
-      let o = {userId: user.id, projectId: this.projectId, value: donationValue};
-      this.dataService.saveData("projects/donate", o).subscribe((resp: any) => {
-        user.balance = parseFloat(user.balance) - parseFloat(donationValue);
-        this.project.collected = this.project.collected + parseFloat(donationValue);
-        this.tokenStorage.saveUser(user);
-        this.toastr.success('Пожертвование сделано успешно!')
-      }, (error: any) => {
-        if(error.error.message.includes('enough')) {
-          this.toastr.warning("Недостаточно денег на счету");
-        }
-      })
+    this.modalRef.onClose.subscribe((payment: any) => {
+      if (payment.donationValue) {
+        let user = this.tokenStorage.getUser();
+        let o = {userId: user.id, projectId: this.projectId, value: payment.donationValue, anonymous: payment.isAnonymous};
+        this.dataService.saveData("projects/donate", o).subscribe((resp: any) => {
+          user.balance = parseFloat(user.balance) - parseFloat(payment.donationValue);
+          this.project.collected = this.project.collected + parseFloat(payment.donationValue);
+          this.tokenStorage.saveUser(user);
+          this.toastr.success('Пожертвование сделано успешно!')
+        }, (error: any) => {
+          if(error.error.message.includes('enough')) {
+            this.toastr.warning("Недостаточно денег на счету");
+          }
+        })
+      }
     });
   }
 }

@@ -15,7 +15,8 @@ export class LoginComponent implements OnInit {
     firstName: null,
     lastName: null,
     email: null,
-    password: null
+    password: null,
+    balance: 0
   }
 
   loginUser: any = {
@@ -50,10 +51,10 @@ export class LoginComponent implements OnInit {
 
   register() {
     this.authS.register(this.registerUser).subscribe(data => {
-        this.tokenStorage.saveToken(data.accessToken);
-        this.tokenStorage.saveUser(data);
+        this.loginUser.email = this.registerUser.email;
+        this.loginUser.password = this.registerUser.password;
 
-
+        this.login();
       }, error => {
       console.log(error)
         let errorMessage: string = error.error.message || '';
