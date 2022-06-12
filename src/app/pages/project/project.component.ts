@@ -51,6 +51,9 @@ export class ProjectComponent implements OnInit {
           user.balance = parseFloat(user.balance) - parseFloat(payment.donationValue);
           this.project.collected = this.project.collected + parseFloat(payment.donationValue);
           this.tokenStorage.saveUser(user);
+
+          this.dataService.getData(`payments/${this.projectId}`).subscribe((data: Array<any>) => this.project.payments = data);
+
           this.toastr.success('Пожертвование сделано успешно!')
         }, (error: any) => {
           if(error.error.message.includes('enough')) {

@@ -14,6 +14,7 @@ export class Project {
   descriptionPictures: Array<Picture>;
   completed: boolean;
   createdDateTime: Date;
+  payments: Array<any>
 
   constructor(
     id?: number,
@@ -26,7 +27,8 @@ export class Project {
     picture?: string,
     descriptionPictures?: Array<Picture>,
     completed?: boolean,
-    createdDateTime?: Date
+    createdDateTime?: Date,
+    payments?: Array<any>
   ) {
     this.id = id;
     this.name = name;
@@ -39,5 +41,6 @@ export class Project {
     this.descriptionPictures = new Array<Picture>();
     this.completed = completed;
     this.createdDateTime = createdDateTime;
+    this.payments = new Array<any>();
   }
 }

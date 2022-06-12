@@ -8,7 +8,7 @@ export class RuProjectTmPipe implements PipeTransform {
   transform(value: unknown, ...args: unknown[]): unknown {
     if(value) {
       let date: Date = new Date(value.toString());
-      let day = date.getDay();
+      let day = date.getDate();
       let year = date.getFullYear();
       let month = null;
       switch (date.getMonth()) {
